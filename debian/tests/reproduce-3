@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# For reproducible .whl files.  See bug ##776026.
+export SOURCE_DATE_EPOCH=315576060
+
+# Change to the directory with the setup.py.
+cd debian/tests/dummy
+
+# Create the .whl file.  Both build it and write it to a temporary directory.
+python3 setup.py bdist_wheel -b $AUTOPKGTEST_TMP/build-1 -d $AUTOPKGTEST_TMP/wheels-1
+
+sleep 5
+
+# Create the .whl file.  Both build it and write it to a temporary directory.
+python3 setup.py bdist_wheel -b $AUTOPKGTEST_TMP/build-2 -d $AUTOPKGTEST_TMP/wheels-2
+
+# For reproducibility, ensure that the checksums are identical.
+sum1=`sha256sum $AUTOPKGTEST_TMP/wheels-1/dummy-0.0-py3-none-any.whl | cut -c 1-64`
+sum2=`sha256sum $AUTOPKGTEST_TMP/wheels-2/dummy-0.0-py3-none-any.whl | cut -c 1-64`
+
+echo $sum1
+echo $sum2
+test $sum1 = $sum2

@@ -1,0 +1,45 @@
+Source: wheel
+Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Uploaders: Barry Warsaw <barry@debian.org>
+Section: python
+Priority: optional
+Rules-Requires-Root: no
+Build-Depends: debhelper-compat (= 12),
+               dh-python,
+               python3-sphinx,
+               python3-all,
+               python3-setuptools
+Standards-Version: 4.5.0
+Vcs-Browser: https://salsa.debian.org/python-team/modules/wheel
+Vcs-Git: https://salsa.debian.org/python-team/modules/wheel.git
+Homepage: https://github.com/pypa/wheel
+
+Package: python3-wheel
+Architecture: all
+Depends: ${misc:Depends},
+         ${python3:Depends}
+Suggests: python3-setuptools
+Description: built-package format for Python
+ A wheel is a ZIP-format archive with a specially formatted filename and the
+ `.whl` extension.  It is designed to contain all the files for a PEP 376
+ compatible install in a way that is very close to the on-disk format.
+ .
+ The wheel project provides a `bdist_wheel` command for setuptools.  Wheel
+ files can be installed with `pip`.
+ .
+ This is the Python 3 compatible package.
+
+Package: python-wheel-common
+Architecture: all
+Depends: python3,
+         python3-wheel,
+         ${misc:Depends}
+Description: built-package format for Python (command-line scripts)
+ A wheel is a ZIP-format archive with a specially formatted filename and the
+ `.whl` extension.  It is designed to contain all the files for a PEP 376
+ compatible install in a way that is very close to the on-disk format.
+ .
+ The wheel project provides a `bdist_wheel` command for setuptools.  Wheel
+ files can be installed with `pip`.
+ .
+ These are the command line scripts and manpages.

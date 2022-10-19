@@ -1,0 +1,5 @@
+Tests: smoketest-3
+Depends: @, python3-setuptools
+
+Tests: reproduce-3
+Depends: @, python3-setuptools, coreutils

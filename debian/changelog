@@ -1,0 +1,167 @@
+wheel (0.34.2-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release 0.34.2.
+  * Update Standards-Version to 4.5.0 (no changes).
+
+ -- Nicolas Dandrimont <olasd@debian.org>  Fri, 20 Mar 2020 19:36:29 +0100
+
+wheel (0.33.6-3) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+
+  [ Dmitry Shachnev ]
+  * Update Homepage, upstream moved from BitBucket to GitHub.
+  * Drop python-keyring, python-keyrings.alt and python-xdg Recommends.
+    They were needed for signing and verifying features that were removed
+    in wheel 0.32.0.
+
+  [ Sandro Tosi ]
+  * Drop python2 support; Closes: #938819
+
+ -- Sandro Tosi <morph@debian.org>  Mon, 16 Mar 2020 00:51:23 -0400
+
+wheel (0.33.6-2) unstable; urgency=medium
+
+  * Team upload.
+  * Use /usr/bin/python2 for autopkgtests (Closes: #944342)
+
+ -- Nicolas Dandrimont <olasd@debian.org>  Tue, 19 Nov 2019 18:57:35 +0100
+
+wheel (0.33.6-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Nicolas Dandrimont ]
+  * New upstream release
+  * Use Rules-Requires-Root: no
+  * Bump standards version to 4.4.1
+  * Use debhelper compat 12
+  * Use /usr/share/dpkg/pkg-info.mk instead of parsing dpkg-
+    parsechangelog
+  * Deduplicate short package descriptions
+
+  [ Ondřej Nový ]
+  * Use debhelper-compat instead of debian/compat.
+
+ -- Nicolas Dandrimont <olasd@debian.org>  Thu, 17 Oct 2019 15:24:20 +0200
+
+wheel (0.32.3-2) unstable; urgency=medium
+
+  * Team upload
+
+  [ Ondřej Nový ]
+  * Use 'python3 -m sphinx' instead of sphinx-build for building docs.
+
+  [ Andreas Tille ]
+  * Upstream removed dir wheel/test - thus removing part of autopkgtest
+    relying on that dir
+    Closes: #915013
+  * Standards-Version: 4.3.0
+
+ -- Andreas Tille <tille@debian.org>  Fri, 08 Feb 2019 07:55:06 +0100
+
+wheel (0.32.3-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Barry Warsaw ]
+  * d/control: Put DPMT in Maintainers and myself in Uploaders.
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/copyright: Use https protocol in Format field
+  * d/watch: Use https protocol
+  * d/control: Remove ancient X-Python-Version field
+  * d/control: Remove ancient X-Python3-Version field
+  * Convert git repository from git-dpm to gbp layout
+  * d/tests: Use AUTOPKGTEST_TMP instead of ADTTMP
+
+  [ Andreas Tille ]
+  * debhelper 11
+  * Point Vcs fields to salsa.debian.org
+  * Standards-Version: 4.2.1
+  * Fix maintainer field
+  * Build-Depends: python3-sphinx
+
+ -- Andreas Tille <tille@debian.org>  Wed, 28 Nov 2018 16:09:39 +0100
+
+wheel (0.29.0-2) unstable; urgency=medium
+
+  * d/patches/reproducible-builds.patch: Added to sort Requires-Dist
+    headers into a deterministic order.  Given by Chris Lamb.
+    (Closes: #845325)
+  * d/control:
+    - Bump Standards-Version to 3.9.8 with no other changes necessary.
+    - Add Recommends for python{,3}-keyring, python{,3}-keyrings.alt, and
+      python{,3}-xdg for signature/keyring support.
+  * d/tests/control: Add additional Depends for pytest commands.
+  * wrap-and-sort -at
+
+ -- Barry Warsaw <barry@debian.org>  Thu, 01 Dec 2016 11:04:31 -0500
+
+wheel (0.29.0-1) unstable; urgency=medium
+
+  * New upstream release.  (Closes: #813992)
+  * d/control:
+    - Bump Standards-Version to 3.9.7 with no other changes necessary.
+    - Remove XS-Testsuite field; it's no longer needed.
+    - Use https: URL in Vcs-Git field.
+  * d/rules: Don't explicitly remove the python3.Y/*.egg-info directory.
+  * d/patches/reproducible-whls.diff: Drop; applied upstream.
+
+ -- Barry Warsaw <barry@debian.org>  Wed, 24 Feb 2016 14:44:18 -0500
+
+wheel (0.26.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * d/patches/python35-support.patch: Removed; applied upstream.
+  * d/patches/reproducible-whls.diff:
+    - Update patch to use $SOURCE_DATE_EPOCH instead of $WHEEL_FORCE_TIMESTAMP.
+      (Closes: #795942)
+    - Use time.gmtime() instead of .localtime() to avoid timezone issues.
+      (Closes: #789981)
+  * d/rules: The test suite requires an installed package, so defer this
+    to DEP-8 tests.  (Closes: #796520)
+  * d/tests/control: Add two tests of the package's test suite.
+  * d/control: Now that the test suite isn't run at package build time,
+    remove the Build-Depends on python-pytest and python3-pytest.
+  * wrap-and-sort
+
+ -- Barry Warsaw <barry@debian.org>  Thu, 01 Oct 2015 19:21:50 -0400
+
+wheel (0.24.0-3) unstable; urgency=medium
+
+  * d/patches/python35-support.patch: Fix a bug on Python 3.5.
+
+ -- Barry Warsaw <barry@debian.org>  Wed, 24 Jun 2015 09:51:36 -0400
+
+wheel (0.24.0-2) unstable; urgency=medium
+
+  * d/control:
+    - Bump Standards-Version with no other changes necessary.
+    - Add XS-Testsuite header for DEP-8 tests.
+  * d/rules:
+    - Add commented out DH_VERBOSE setting.
+    - Override the manpage date for reproducible builds. (Closes: #782405)
+  * d/patch/reproducible-whls.diff: Add based on initial contribution
+    from Reiner Herrmann, with further refinements by Barry Warsaw based
+    on upstream pull request review.  (Closes: #776026)
+  * d/watch: Use the pypi.debian.net redirector.
+  * d/tests: Add smoke and reproducible .whl file DEP-8 tests.
+
+ -- Barry Warsaw <barry@debian.org>  Fri, 12 Jun 2015 14:14:29 -0400
+
+wheel (0.24.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Barry Warsaw <barry@debian.org>  Sun, 13 Jul 2014 13:17:07 -0400
+
+wheel (0.23.0-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #745673)
+
+ -- Barry Warsaw <barry@debian.org>  Mon, 05 May 2014 18:02:18 -0400

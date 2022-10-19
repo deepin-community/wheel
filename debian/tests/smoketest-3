@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Change to the directory with the setup.py.
+cd debian/tests/dummy
+
+# Create the .whl file.  Both build it and write it to a temporary directory.
+python3 setup.py bdist_wheel -b $AUTOPKGTEST_TMP/build -d $AUTOPKGTEST_TMP/wheels
+
+# Guarantee that the source of the dummy package won't be on sys.path.
+cd $AUTOPKGTEST_TMP
+
+# See if the .whl has the contents we expect.
+export PYTHONPATH=wheels/dummy-0.0-py3-none-any.whl
+yes=`python3 -c "import dummy.yes; dummy.yes()"`
+no=`python3 -c "import dummy.no; dummy.no()"`
+
+echo "yes = $yes"
+echo "no = $no"
+test $yes = 'yes' -a $no = 'no'
