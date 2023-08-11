@@ -1,0 +1,6 @@
+.tox/
+dist/
+docs/_build/
+src/*.egg-info/
+tests/testdata/*/*.egg-info/
+tests/testdata/*/build/

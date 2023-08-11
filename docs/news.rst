@@ -1,6 +1,92 @@
 Release Notes
 =============
 
+**0.38.4 (2022-11-09)**
+
+- Fixed ``PKG-INFO`` conversion in ``bdist_wheel`` mangling UTF-8 header values in
+  ``METADATA`` (PR by Anderson Bravalheri)
+
+**0.38.3 (2022-11-08)**
+
+- Fixed install failure when used with ``--no-binary``, reported on Ubuntu 20.04, by
+  removing ``setup_requires`` from ``setup.cfg``
+
+**0.38.2 (2022-11-05)**
+
+- Fixed regression introduced in v0.38.1 which broke parsing of wheel file names with
+  multiple platform tags
+
+**0.38.1 (2022-11-04)**
+
+- Removed install dependency on setuptools
+- The future-proof fix in 0.36.0 for converting PyPy's SOABI into a abi tag was
+  faulty. Fixed so that future changes in the SOABI will not change the tag.
+
+**0.38.0 (2022-10-21)**
+
+- Dropped support for Python < 3.7
+- Updated vendored ``packaging`` to 21.3
+- Replaced all uses of ``distutils`` with ``setuptools``
+- The handling of ``license_files`` (including glob patterns and default
+  values) is now delegated to ``setuptools>=57.0.0`` (#466).
+  The package dependencies were updated to reflect this change.
+- Fixed potential DoS attack via the ``WHEEL_INFO_RE`` regular expression
+- Fixed ``ValueError: ZIP does not support timestamps before 1980`` when using
+  ``SOURCE_DATE_EPOCH=0`` or when on-disk timestamps are earlier than 1980-01-01. Such
+  timestamps are now changed to the minimum value before packaging.
+
+**0.37.1 (2021-12-22)**
+
+- Fixed ``wheel pack`` duplicating the ``WHEEL`` contents when the build number has changed (#415)
+- Fixed parsing of file names containing commas in ``RECORD`` (PR by Hood Chatham)
+
+**0.37.0 (2021-08-09)**
+
+- Added official Python 3.10 support
+- Updated vendored ``packaging`` library to v20.9
+
+**0.36.2 (2020-12-13)**
+
+- Updated vendored ``packaging`` library to v20.8
+- Fixed wheel sdist missing ``LICENSE.txt``
+- Don't use default ``macos/arm64`` deployment target in calculating the
+  platform tag for fat binaries (PR by Ronald Oussoren)
+
+**0.36.1 (2020-12-04)**
+
+- Fixed ``AssertionError`` when ``MACOSX_DEPLOYMENT_TARGET`` was set to ``11``
+  (PR by Grzegorz Bokota and François-Xavier Coudert)
+- Fixed regression introduced in 0.36.0 on Python 2.7 when a custom generator
+  name was passed as unicode (Scikit-build)
+  (``TypeError: 'unicode' does not have the buffer interface``)
+
+**0.36.0 (2020-12-01)**
+
+- Added official Python 3.9 support
+- Updated vendored ``packaging`` library to v20.7
+- Switched to always using LF as line separator when generating ``WHEEL`` files
+  (on Windows, CRLF was being used instead)
+- The ABI tag is taken from  the sysconfig SOABI value. On PyPy the SOABI value
+  is ``pypy37-pp73`` which is not compliant with PEP 3149, as it should have
+  both the API tag and the platform tag. This change future-proofs any change
+  in PyPy's SOABI tag to make sure only the ABI tag is used by wheel.
+- Fixed regression and test for ``bdist_wheel --plat-name``. It was ignored for
+  C extensions in v0.35, but the regression was not detected by tests.
+
+**0.35.1 (2020-08-14)**
+
+- Replaced install dependency on ``packaging`` with a vendored copy of its
+  ``tags`` module
+- Fixed ``bdist_wheel`` not working on FreeBSD due to mismatching platform tag
+  name (it was not being converted to lowercase)
+
+**0.35.0 (2020-08-13)**
+
+- Switched to the packaging_ library for computing wheel tags
+- Fixed a resource leak in ``WheelFile.open()`` (PR by Jon Dufresne)
+
+.. _packaging: https://pypi.org/project/packaging/
+
 **0.34.2 (2020-01-30)**
 
 - Fixed installation of ``wheel`` from sdist on environments without Unicode

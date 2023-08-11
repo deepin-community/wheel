@@ -1,4 +1,10 @@
+---
 Bug-Database: https://github.com/pypa/wheel/issues
 Bug-Submit: https://github.com/pypa/wheel/issues/new
+Changelog: https://wheel.readthedocs.io/en/stable/news.html
+Documentation: https://wheel.readthedocs.io/
+Registry:
+  - Name: PyPI
+    Entry: wheel
 Repository: https://github.com/pypa/wheel.git
 Repository-Browse: https://github.com/pypa/wheel
