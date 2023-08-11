@@ -1,0 +1,130 @@
+From: Stefano Rivera <stefanor@debian.org>
+Date: Tue, 11 Jan 2022 14:15:10 -0400
+Subject: Build the man page with Sphinx
+
+Rather than trying to build the entire Sphinx documentation into a
+(poorly laid out) manpage, build the RST manpage we have in the source
+tree.
+
+Forwarded: https://github.com/pypa/wheel/pull/441
+---
+ docs/conf.py            |  4 +++-
+ docs/manpages/wheel.rst | 43 +++++++++++++++++++++++++++++++++++++++++++
+ manpages/wheel.rst      | 43 -------------------------------------------
+ 3 files changed, 46 insertions(+), 44 deletions(-)
+ create mode 100644 docs/manpages/wheel.rst
+ delete mode 100644 manpages/wheel.rst
+
+diff --git a/docs/conf.py b/docs/conf.py
+index 19b11f4..6d70e03 100644
+--- a/docs/conf.py
++++ b/docs/conf.py
+@@ -219,7 +219,9 @@ latex_documents = [
+ 
+ # One entry per manual page. List of tuples
+ # (source start file, name, description, authors, manual section).
+-man_pages = [("index", "wheel", "wheel Documentation", ["Daniel Holth"], 1)]
++man_pages = [
++    ('manpages/wheel', 'wheel', 'wheel Documentation', [u'Daniel Holth'], 1),
++]
+ 
+ # If true, show URL addresses after external links.
+ # man_show_urls = False
+diff --git a/docs/manpages/wheel.rst b/docs/manpages/wheel.rst
+new file mode 100644
+index 0000000..a2e4873
+--- /dev/null
++++ b/docs/manpages/wheel.rst
+@@ -0,0 +1,43 @@
++:orphan:
++
++wheel manual page
++=================
++
++Synopsis
++--------
++
++**wheel** [*command*] [*options*]
++
++
++Description
++-----------
++
++:program:`wheel` installs and operates on `PEP 427`_ format binary wheels.
++
++
++Commands
++--------
++  ``unpack``
++    Unpack wheel
++
++  ``pack``
++    Repack a previously unpacked wheel
++
++  ``convert``
++    Convert egg or wininst to wheel
++
++  ``version``
++    Print version and exit
++
++  ``help``
++    Show this help
++
++Try ``wheel <command> --help`` for more information.
++
++
++Options
++-------
++  -h, --help            show this help message and exit
++
++
++.. _`PEP 427`: https://www.python.org/dev/peps/pep-0427/
+diff --git a/manpages/wheel.rst b/manpages/wheel.rst
+deleted file mode 100644
+index a2e4873..0000000
+--- a/manpages/wheel.rst
++++ /dev/null
+@@ -1,43 +0,0 @@
+-:orphan:
+-
+-wheel manual page
+-=================
+-
+-Synopsis
+---------
+-
+-**wheel** [*command*] [*options*]
+-
+-
+-Description
+------------
+-
+-:program:`wheel` installs and operates on `PEP 427`_ format binary wheels.
+-
+-
+-Commands
+---------
+-  ``unpack``
+-    Unpack wheel
+-
+-  ``pack``
+-    Repack a previously unpacked wheel
+-
+-  ``convert``
+-    Convert egg or wininst to wheel
+-
+-  ``version``
+-    Print version and exit
+-
+-  ``help``
+-    Show this help
+-
+-Try ``wheel <command> --help`` for more information.
+-
+-
+-Options
+--------
+-  -h, --help            show this help message and exit
+-
+-
+-.. _`PEP 427`: https://www.python.org/dev/peps/pep-0427/

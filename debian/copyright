@@ -3,13 +3,8 @@ Upstream-Name: wheel
 Source: https://pypi.python.org/pypi/wheel
 
 Files: *
-Copyright: copyright (c) 2012-2014 Daniel Holth <dholth@fastmail.fm> and contributors.
-License: Expat/MIT
- "wheel" copyright (c) 2012-2014 Daniel Holth <dholth@fastmail.fm> and
- contributors.
- .
- The MIT License
- .
+Copyright: 2012-2022, Daniel Holth <dholth@fastmail.fm> and contributors.
+License: Expat
  Permission is hereby granted, free of charge, to any person obtaining a
  copy of this software and associated documentation files (the "Software"),
  to deal in the Software without restriction, including without limitation
@@ -29,7 +24,8 @@ License: Expat/MIT
  OTHER DEALINGS IN THE SOFTWARE.
 
 Files: debian/*
-Copyright: 2014 Barry A. Warsaw
+Copyright: 2014, Barry A. Warsaw
+           2022, Stefano Rivera <stefanor@debian.org>
 License: GPL-3
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License version 3,

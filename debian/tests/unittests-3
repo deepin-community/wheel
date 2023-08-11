@@ -1,0 +1,8 @@
+#!/bin/sh
+set -euf
+
+# We run out of the source tree, because the tests operate on the wheel source
+# package.
+for py in $(py3versions -s); do
+	$py -m pytest tests/
+done

@@ -1,5 +1,15 @@
 Tests: smoketest-3
-Depends: @, python3-setuptools
+Depends: python3-setuptools, python3-wheel
+Restrictions: allow-stderr
 
 Tests: reproduce-3
-Depends: @, python3-setuptools, coreutils
+Depends: coreutils, python3-setuptools, python3-wheel
+Restrictions: allow-stderr
+
+Tests: unittests-3
+Depends: build-essential,
+         python3-all-dev,
+         python3-pytest,
+         python3-pytest-cov,
+         python3-setuptools,
+         python3-wheel

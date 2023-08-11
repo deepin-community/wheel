@@ -1,0 +1,25 @@
+From: Stefano Rivera <stefanor@debian.org>
+Date: Tue, 11 Jan 2022 15:30:27 -0400
+Subject: Skip MacOS Tests
+
+MacOS example .dylibs aren't shipped in the source.
+
+Forwarded: not-needed
+---
+ tests/test_macosx_libfile.py | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/tests/test_macosx_libfile.py b/tests/test_macosx_libfile.py
+index fed3ebb..b4b19f2 100644
+--- a/tests/test_macosx_libfile.py
++++ b/tests/test_macosx_libfile.py
+@@ -7,6 +7,9 @@ import sysconfig
+ from wheel.bdist_wheel import get_platform
+ from wheel.macosx_libfile import extract_macosx_min_system_version
+ 
++import unittest
++raise unittest.SkipTest("Debian: MacOS example .dylibs aren't shipped in the source")
++
+ 
+ def test_read_from_dylib():
+     dirname = os.path.dirname(__file__)

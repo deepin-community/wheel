@@ -4,9 +4,10 @@ User Guide
 Building Wheels
 ---------------
 
-Building wheels from a setuptools_ based project is simple::
+To build a wheel for your project::
 
-    python setup.py bdist_wheel
+    python -m pip install build
+    python -m build --wheel
 
 This will build any C extensions in the project and then package those and the
 pure Python code into a ``.whl`` file in the ``dist`` directory.
@@ -20,7 +21,6 @@ adding this to your ``setup.cfg`` file:
     [bdist_wheel]
     universal = 1
 
-.. _setuptools: https://pypi.org/project/setuptools/
 
 Including license files in the generated wheel file
 ---------------------------------------------------
@@ -79,22 +79,8 @@ This can be changed with the ``--dest-dir`` option::
 Installing Wheels
 -----------------
 
-.. note:: The ``wheel install`` command is merely a Proof-Of-Concept
-    implementation and lacks many features provided by pip_. It is meant only
-    as an example for implementors of packaging tools. End users should use
-    ``pip install`` instead.
+To install a wheel file, use pip_::
 
-To install a wheel file in ``site-packages``::
-
-    $ wheel install someproject-1.5.0-py2-py3-none.whl
-
-This will unpack the archive in your current site packages directory and
-install any console scripts contained in the wheel.
-
-You can accomplish the same in two separate steps (with ``<site-packages-dir>``
-being the path to your ``site-packages`` directory::
-
-    $ wheel unpack -d <site-packages-dir> someproject-X.Y.Z-py2-py3-none.whl
-    $ wheel install-scripts someproject
+    $ pip install someproject-1.5.0-py2-py3-none.whl
 
 .. _pip: https://pypi.org/project/pip/

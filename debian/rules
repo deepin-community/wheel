@@ -11,26 +11,21 @@ BUILD_DATE=$(shell LC_ALL=C date -u "+%B %d, %Y" -d "$(SOURCE_DATE_EPOCH)")
 %:
 	dh $@ --with python3 --buildsystem=pybuild
 
+execute_before_dh_install:
+	mkdir -p debian/python3-wheel-whl/usr/share/python-wheels
+	PYTHONPATH=src python3 setup.py bdist_wheel \
+	        -d debian/python3-wheel-whl/usr/share/python-wheels
 
-override_dh_installman:
-	(cd debian/manpages; \
+execute_before_dh_installman:
+ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
+	(cd docs; \
 	 python3 -m sphinx \
 		-D today="$(BUILD_DATE)" \
 		-b man \
 		-d _build/doctrees . _build/man)
-	dh_installman
-
+endif
 
 override_dh_python3:
 	dh_python3 --shebang=/usr/bin/python3
 	mkdir -p debian/python-wheel-common/usr
 	mv debian/python3-wheel/usr/bin debian/python-wheel-common/usr
-
-
-# The tests require that the package be installed, so defer them to DEP-8.
-override_dh_auto_test:
-
-
-override_dh_auto_clean:
-	dh_auto_clean
-	rm -rf debian/manpages/_build
