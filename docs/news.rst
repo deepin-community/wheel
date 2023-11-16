@@ -1,6 +1,39 @@
 Release Notes
 =============
 
+**0.41.2 (2023-08-22)**
+
+- Fixed platform tag detection for GraalPy and 32-bit python running on an aarch64
+  kernel (PR by Matthieu Darbois)
+- Fixed ``wheel tags`` to not list directories in ``RECORD`` files
+  (PR by Mike Taves)
+- Fixed ABI tag generation for GraalPy (PR by Michael Simacek)
+
+**0.41.1 (2023-08-05)**
+
+- Fixed naming of the ``data_dir`` directory in the presence of local version segment
+  given via ``egg_info.tag_build`` (PR by Anderson Bravalheri)
+- Fixed version specifiers in ``Requires-Dist`` being wrapped in parentheses
+
+**0.41.0 (2023-07-22)**
+
+- Added full support of the build tag syntax to ``wheel tags`` (you can now set a build
+  tag like ``123mytag``)
+- Fixed warning on Python 3.12 about ``onerror`` deprecation. (PR by Henry Schreiner)
+- Support testing on Python 3.12 betas (PR by Ewout ter Hoeven)
+
+**0.40.0 (2023-03-14)**
+
+- Added a ``wheel tags`` command to modify tags on an existing wheel
+  (PR by Henry Schreiner)
+- Updated vendored ``packaging`` to 23.0
+- ``wheel unpack`` now preserves the executable attribute of extracted files
+- Fixed spaces in platform names not being converted to underscores (PR by David Tucker)
+- Fixed ``RECORD`` files in generated wheels missing the regular file attribute
+- Fixed ``DeprecationWarning`` about the use of the deprecated ``pkg_resources`` API
+  (PR by Thomas Grainger)
+- Wheel now uses flit-core as a build backend (PR by Henry Schreiner)
+
 **0.38.4 (2022-11-09)**
 
 - Fixed ``PKG-INFO`` conversion in ``bdist_wheel`` mangling UTF-8 header values in
@@ -37,7 +70,8 @@ Release Notes
 
 **0.37.1 (2021-12-22)**
 
-- Fixed ``wheel pack`` duplicating the ``WHEEL`` contents when the build number has changed (#415)
+- Fixed ``wheel pack`` duplicating the ``WHEEL`` contents when the build number has
+  changed (#415)
 - Fixed parsing of file names containing commas in ``RECORD`` (PR by Hood Chatham)
 
 **0.37.0 (2021-08-09)**

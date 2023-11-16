@@ -10,10 +10,10 @@ Forwarded: not-needed
  1 file changed, 3 insertions(+)
 
 diff --git a/tests/test_macosx_libfile.py b/tests/test_macosx_libfile.py
-index fed3ebb..b4b19f2 100644
+index ef8dc96..5b9206b 100644
 --- a/tests/test_macosx_libfile.py
 +++ b/tests/test_macosx_libfile.py
-@@ -7,6 +7,9 @@ import sysconfig
+@@ -9,6 +9,9 @@ import pytest
  from wheel.bdist_wheel import get_platform
  from wheel.macosx_libfile import extract_macosx_min_system_version
  
