@@ -3,24 +3,15 @@
 export PYBUILD_NAME=wheel
 export PYBUILD_VERBOSE=1
 export DH_VERBOSE=1
-
-include /usr/share/dpkg/pkg-info.mk
-
-BUILD_DATE=$(shell LC_ALL=C date -u "+%B %d, %Y" -d "$(SOURCE_DATE_EPOCH)")
+export PYBUILD_AFTER_INSTALL=mkdir -p {dir}/debian/python3-wheel-whl/usr/share/python-wheels && cp {home_dir}/*.whl {dir}/debian/python3-wheel-whl/usr/share/python-wheels
 
 %:
 	dh $@ --with python3 --buildsystem=pybuild
-
-execute_before_dh_install:
-	mkdir -p debian/python3-wheel-whl/usr/share/python-wheels
-	PYTHONPATH=src python3 setup.py bdist_wheel \
-	        -d debian/python3-wheel-whl/usr/share/python-wheels
 
 execute_before_dh_installman:
 ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
 	(cd docs; \
 	 python3 -m sphinx \
-		-D today="$(BUILD_DATE)" \
 		-b man \
 		-d _build/doctrees . _build/man)
 endif

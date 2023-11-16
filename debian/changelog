@@ -1,8 +1,44 @@
-wheel (0.38.4-2) unstable; urgency=medium
+wheel (0.41.2-1) unstable; urgency=medium
+
+  * New upstream point release.
+
+ -- Stefano Rivera <stefanor@debian.org>  Fri, 22 Sep 2023 22:40:48 +0530
+
+wheel (0.41.0-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Stefano Rivera <stefanor@debian.org>  Wed, 02 Aug 2023 18:04:16 +0200
+
+wheel (0.41.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Revert tox 4 workarounds, dh-python now supports it.
+  * Bump dh-python Build-Depends, the version we need is still only in
+    experimental.
+
+ -- Stefano Rivera <stefanor@debian.org>  Sun, 30 Jul 2023 14:28:15 +0200
+
+wheel (0.40.0-2) experimental; urgency=medium
 
   * Correctly clean. (Closes: #1034079)
 
- -- Stefano Rivera <stefanor@debian.org>  Tue, 11 Apr 2023 14:10:59 -0400
+ -- Stefano Rivera <stefanor@debian.org>  Tue, 11 Apr 2023 14:11:59 -0400
+
+wheel (0.40.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop patch sphinx-manpage, superseded upstream.
+  * Migrate to pybuild-plugin-pyproject, upstream is using flit.
+  * Drop reproducible sphinx tweaks in debian/rules, it's now reproducible out
+    of the box.
+  * Bump tox Build-Dep, following upstream.
+  * Use pybuild --test-custom to drive tox, because we don't have a tox.ini.
+  * Use --installpkg to get around tox 4 requiring isolated builds.
+  * Update copyright (packaging is now vendored).
+  * Bump Standards-Version to 4.6.2, no changes needed.
+
+ -- Stefano Rivera <stefanor@debian.org>  Sun, 26 Mar 2023 11:07:48 -0400
 
 wheel (0.38.4-1) unstable; urgency=medium
 
