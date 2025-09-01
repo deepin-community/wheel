@@ -1,0 +1,36 @@
+From: Stefano Rivera <stefanor@debian.org>
+Date: Sat, 5 Apr 2025 18:50:16 -0400
+Subject: Run tox commands via envpython
+
+Otherwise we need to list the commands in allowlist_externals, with our
+system virtualenv tox approach.
+
+Forwarded: not-needed
+---
+ pyproject.toml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 28d318b..65e3110 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -121,7 +121,7 @@ skip_missing_interpreters = true
+ [tool.tox.env_run_base]
+ depends = ["lint"]
+ package = "wheel"
+-commands = [["pytest", { replace = "posargs", extend = true }]]
++commands = [["{envpython}", "-m", "pytest", { replace = "posargs", extend = true }]]
+ extras = ["test"]
+ set_env = { PYTHONWARNDEFAULTENCODING = "1" }
+ 
+@@ -129,8 +129,8 @@ set_env = { PYTHONWARNDEFAULTENCODING = "1" }
+ depends = []
+ deps = ["pre-commit"]
+ package = "skip"
+-commands = [["pre-commit", "run", "-a"]]
++commands = [["{envpython}", "-m", "pre_commit", "run", "-a"]]
+ 
+ [tool.tox.env.pkg]
+ deps = ["build", "flit >= 3.8"]
+-commands = [["pytest", "tests/test_sdist.py", { replace = "posargs", extend = true }]]
++commands = [["{envpython}", "-m", "pytest", "tests/test_sdist.py", { replace = "posargs", extend = true }]]
