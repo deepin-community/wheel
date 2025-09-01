@@ -1,1 +1,1 @@
-skip-macos-tests
+tox-envpython

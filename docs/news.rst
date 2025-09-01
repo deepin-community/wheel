@@ -1,6 +1,66 @@
 Release Notes
 =============
 
+**0.46.1 (2025-04-08)**
+
+- Temporarily restored the ``wheel.macosx_libfile`` module
+  (`#659 <https://github.com/pypa/wheel/issues/665960>`_)
+
+**0.46.0 (2025-04-03)**
+
+- Dropped support for Python 3.8
+- Removed the ``bdist_wheel`` setuptools command implementation and entry point.
+  The ``wheel.bdist_wheel`` module is now just an alias to
+  ``setuptools.command.bdist_wheel``, emitting a deprecation warning on import.
+- Removed vendored ``packaging`` in favor of a run-time dependency on it
+- Made the ``wheel.metadata`` module private (with a deprecation warning if it's
+  imported
+- Made the ``wheel.cli`` package private (no deprecation warning)
+- Fixed an exception when calling the ``convert`` command with an empty description
+  field
+
+**0.45.1 (2024-11-23)**
+
+- Fixed pure Python wheels converted from eggs and wininst files having the ABI tag in
+  the file name
+
+**0.45.0 (2024-11-08)**
+
+- Refactored the ``convert`` command to not need setuptools to be installed
+- Don't configure setuptools logging unless running ``bdist_wheel``
+- Added a redirection from ``wheel.bdist_wheel.bdist_wheel`` to
+  ``setuptools.command.bdist_wheel.bdist_wheel`` to improve compatibility with
+  ``setuptools``' latest fixes.
+
+  Projects are still advised to migrate away from the deprecated  module and import
+  the ``setuptools``' implementation explicitly. (PR by @abravalheri)
+
+**0.44.0 (2024-08-04)**
+
+- Canonicalized requirements in METADATA file (PR by Wim Jeantine-Glenn)
+- Deprecated the ``bdist_wheel`` module, as the code was migrated to ``setuptools``
+  itself
+
+**0.43.0 (2024-03-11)**
+
+- Dropped support for Python 3.7
+- Updated vendored ``packaging`` to 24.0
+
+**0.42.0 (2023-11-26)**
+
+- Allowed removing build tag with ``wheel tags --build ""``
+- Fixed ``wheel pack`` and ``wheel tags`` writing updated ``WHEEL`` fields after a
+  blank line, causing other tools to ignore them
+- Fixed ``wheel pack`` and ``wheel tags`` writing ``WHEEL`` with CRLF line endings or
+  a mix of CRLF and LF
+- Fixed ``wheel pack --build-number ""`` not removing build tag from ``WHEEL``
+  (above changes by Benjamin Gilbert)
+
+**0.41.3 (2023-10-30)**
+
+- Updated vendored ``packaging`` to 23.2
+- Fixed ABI tag generation for CPython 3.13a1 on Windows (PR by Sam Gross)
+
 **0.41.2 (2023-08-22)**
 
 - Fixed platform tag detection for GraalPy and 32-bit python running on an aarch64
