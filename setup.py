@@ -19,10 +19,11 @@ extras_require = \
 {'test': ['pytest >= 6.0.0', 'setuptools >= 77']}
 
 entry_points = \
-{'console_scripts': ['wheel = wheel._commands:main']}
+{'console_scripts': ['wheel = wheel._commands:main'],
+ 'distutils.commands': ['bdist_wheel = wheel.bdist_wheel:bdist_wheel']}
 
 setup(name='wheel',
-      version='0.46.1',
+      version='0.46.3',
       description='Command line tool for manipulating wheel files',
       author=None,
       author_email='Daniel Holth <dholth@fastmail.fm>',

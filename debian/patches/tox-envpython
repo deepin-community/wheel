@@ -11,10 +11,10 @@ Forwarded: not-needed
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/pyproject.toml b/pyproject.toml
-index 28d318b..65e3110 100644
+index f7d2a39..3aa1ead 100644
 --- a/pyproject.toml
 +++ b/pyproject.toml
-@@ -121,7 +121,7 @@ skip_missing_interpreters = true
+@@ -125,7 +125,7 @@ skip_missing_interpreters = true
  [tool.tox.env_run_base]
  depends = ["lint"]
  package = "wheel"
@@ -23,7 +23,7 @@ index 28d318b..65e3110 100644
  extras = ["test"]
  set_env = { PYTHONWARNDEFAULTENCODING = "1" }
  
-@@ -129,8 +129,8 @@ set_env = { PYTHONWARNDEFAULTENCODING = "1" }
+@@ -133,8 +133,8 @@ set_env = { PYTHONWARNDEFAULTENCODING = "1" }
  depends = []
  deps = ["pre-commit"]
  package = "skip"

@@ -1,10 +1,25 @@
 Release Notes
 =============
 
+**0.46.3 (2026-01-22)**
+
+- Fixed ``ImportError: cannot import name '_setuptools_logging' from 'wheel'`` when
+  installed alongside an old version of setuptools and running the ``bdist_wheel``
+  command (`#676 <https://github.com/pypa/wheel/issues/676>`_)
+
+**0.46.2 (2026-01-22)**
+
+- Restored the ``bdist_wheel`` command for compatibility with ``setuptools`` older than
+  v70.1
+- Importing ``wheel.bdist_wheel`` now emits a ``FutureWarning`` instead of a
+  ``DeprecationWarning``
+- Fixed ``wheel unpack`` potentially altering the permissions of files outside of the
+  destination tree with maliciously crafted wheels (CVE-2026-24049)
+
 **0.46.1 (2025-04-08)**
 
 - Temporarily restored the ``wheel.macosx_libfile`` module
-  (`#659 <https://github.com/pypa/wheel/issues/665960>`_)
+  (`#659 <https://github.com/pypa/wheel/issues/659>`_)
 
 **0.46.0 (2025-04-03)**
 

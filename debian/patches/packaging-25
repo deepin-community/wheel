@@ -1,0 +1,31 @@
+From: Stefano Rivera <stefanor@debian.org>
+Date: Tue, 3 Feb 2026 19:04:14 -0400
+Subject: Handle packaging < 26 in tests
+
+The tests were updated for this change in packaging 26.0, but Debian
+hasn't updated to this yet. https://github.com/pypa/packaging/pull/953
+
+Forwarded: not-needed
+---
+ tests/test_metadata.py | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/tests/test_metadata.py b/tests/test_metadata.py
+index db0ab0c..8668e7c 100644
+--- a/tests/test_metadata.py
++++ b/tests/test_metadata.py
+@@ -34,6 +34,14 @@ def test_pkginfo_to_metadata(tmp_path: Path) -> None:
+         ("Requires-Dist", 'pytest-cov; extra == "test"'),
+     ]
+ 
++    import packaging
++    from packaging.version import Version
++    if Version(packaging.__version__) < Version("26.0"):
++        expected_metadata = [
++            (k, v.replace(" @ ", "@ "))
++            for k, v in expected_metadata
++        ]
++
+     pkg_info = tmp_path.joinpath("PKG-INFO")
+     pkg_info.write_text(
+         """\
